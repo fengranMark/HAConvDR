@@ -11,7 +11,7 @@ import argparse
 from models import load_model
 from utils import check_dir_exist_or_build, pstore, pload, split_and_padding_neighbor, set_seed
 from preprocess_topiocqa import load_collection
-from data_structure import ConvDataset, ConvDataset_topiocqa, ConvDataset_topiocqa_rel
+from data import ConvDataset, ConvDataset_topiocqa, ConvDataset_topiocqa_rel
 import os
 from os import path
 from os.path import join as oj
