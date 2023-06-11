@@ -1,0 +1,16 @@
+input_query_path = "datasets/qrecc/new_preprocessed/train_with_doc.json"
+index_dir_path = "datasets/qrecc/indexes/bm25"
+
+query_type = "rewrite"
+bm25_k1 = 0.82
+bm25_b = 0.68
+top_k = 100
+rel_threshold = 1
+add_topic = false
+use_PRF = false
+
+
+output_dir_path = "output/qrecc/bm25"
+gold_qrel_file_path = "datasets/qrecc/new_preprocessed/qrecc_qrel.tsv"
+# gold_qrel_file_path = "datasets/qrecc/qrecc_qrel.tsv"
+PRF_file = "output/qrecc/bm25/test_rel_label_rawq_1.json"
