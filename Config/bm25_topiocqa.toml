@@ -1,0 +1,20 @@
+input_query_path = "datasets/topiocqa/train_new.json"
+#input_query_path = "../ConvRJ/datasets/topiocqa/train_with_info.json"
+index_dir_path = "datasets/topiocqa/indexes/bm25"
+
+query_type = "rewrite"
+bm25_k1 = 0.9
+bm25_b = 0.4
+#bm25_k1 = 1.4
+#bm25_b = 0.25
+top_k = 100
+rel_threshold = 1
+add_topic = false
+use_PRF = false
+
+
+output_dir_path = "output/topiocqa/bm25"
+gold_qrel_file_path = "datasets/topiocqa/dev_gold.trec"
+#PRF_file = "output/topiocqa/bm25/train_rel_label_rawq_1.json" 
+PRF_file = "../ConvRJ/datasets/topiocqa/train_with_info.json" 
+
