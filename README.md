@@ -50,7 +50,7 @@ Then create the index for the collection by running
 
     bash create_index.sh
     
-Finally, the produced bm25 rank-list can be used to generate bm25-hard negatives by 
+Finally, the produced bm25 rank-list can be used to generate bm25-hard negatives by "extract_doc_content_of_bm25_hard_negs_for_train_file" function in preprocess files.
 
 ## 4. Train ConvHACL
 
@@ -73,3 +73,26 @@ To train ConvHACL, please run the following commands. The pre-trained language m
       --is_PRF=False \ % True for PRF setting
       --alpha=1
       
+## 5. Retrieval evaluation
+
+Now, we can perform retrieval to evaluate the ConvHACL-trained dense retriever by running:
+
+    python test_retrieval_topiocqa.py --pretrained_encoder_path=$trained_model_path \ 
+      --passage_embeddings_dir_path=$passage_embeddings_dir_path \ 
+      --passage_offset2pid_path=$passage_offset2pid_path \
+      --qrel_output_path=$qrel_output_path \ % output dir
+      --output_trec_file=$output_trec_file \
+      --trec_gold_qrel_file_path=$trec_gold_qrel_file_path \ % gold qrel file
+      --per_gpu_train_batch_size=4 \ 
+      --test_type=convqp \ % convq for qrecc
+      --max_query_length=32 \
+      --max_doc_length=384 \ % 256 for qrecc
+      --max_response_length=64 \
+      --max_concat_length=512 \ % 256 for qrecc
+      --use_PRL=False \
+      --is_PRF=False \
+      --is_train=False \
+      --top_k=100 \
+      --rel_threshold=1 \
+      --passage_block_num=$passage_block_num \
+      --use_gpu=True
