@@ -1,6 +1,6 @@
-# ConvHACL
+# HAConvDR
 
-A temporary repository of our EMNLP 2023 submission - History-Aware Contrastive Learning for Conversational Search.
+A temporary repository of our ARR submission - History-Aware Conversational Dense Retrieval.
 
 # Environment Dependency
 
