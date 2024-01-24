@@ -16,7 +16,7 @@ Main packages:
 
 ## 1. Download data and Preprocessing
 
-Four public datasets can be download from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa) Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to process data for generting pseudo relevant judgment.
+Four public datasets can be downloaded from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa), and [TREC-CAST](https://www.treccast.ai/). Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to process data for generating pseudo relevant judgment.
 
 ## 2. Generate pseudo relevant judgment
 
@@ -32,17 +32,17 @@ The output file "train_rel_label.json" contains the PRJ for each turn.
 
 ## 3. Retrieval Indexing (Dense and Sparse)
 
-To evaluate the trained model by ConvHACL, we should first establish index for both dense and sparse retrievers. The sparse retrieval is used for generating bm25-hard negatives.
+To evaluate the trained model by HAConvDR, we should first establish index for both dense and sparse retrievers. The sparse retrieval is used for generating bm25-hard negatives.
 
 ### 3.1 Dense
-For dense retrieval, we use the pre-trained ad-hoc search model ANCE to generate passage embeedings. Two scripts for each dataset are provided by running:
+For dense retrieval, we use the pre-trained ad-hoc search model ANCE to generate passage embeddings. Two scripts for each dataset are provided by running:
 
     python gen_tokenized_doc.py --config=Config/gen_tokenized_doc.toml
     python gen_doc_embeddings.py --config=Config/gen_doc_embeddings.toml
 
 ### 3.2 Sparse
 
-For sparse retrieval, we first run the format convertion script as:
+For sparse retrieval, we first run the format conversion script as:
 
     python convert_to_pyserini_format.py
     
@@ -52,9 +52,9 @@ Then create the index for the collection by running
     
 Finally, the produced bm25 rank-list can be used to generate bm25-hard negatives by "extract_doc_content_of_bm25_hard_negs_for_train_file" function in preprocess files.
 
-## 4. Train ConvHACL
+## 4. Train HAConvDR
 
-To train ConvHACL, please run the following commands. The pre-trained language models we use for dense retrieval is [ANCE](https://github.com/microsoft/ANCE).
+To train HAConvDR, please run the following commands. The pre-trained language model we use for dense retrieval is [ANCE](https://github.com/microsoft/ANCE).
 
     python train_convretriever_topiocqa.py --pretrained_encoder_path="checkpoints/ad-hoc-ance-msmarco" \ 
       --train_file_path=$train_file_path \ 
@@ -63,9 +63,9 @@ To train ConvHACL, please run the following commands. The pre-trained language m
       --per_gpu_train_batch_size=64 \ 
       --num_train_epochs=10 \
       --max_query_length=32 \
-      --max_doc_length=384 \ % 256 for qrecc
+      --max_doc_length=384 \ 
       --max_response_length=64 \
-      --max_concat_length=512 \ % 256 for qrecc
+      --max_concat_length=512 \ 
       --use_PRL=True \
       --is_train=True \
       --is_prepos_neg=True \
@@ -84,11 +84,11 @@ Now, we can perform retrieval to evaluate the ConvHACL-trained dense retriever b
       --output_trec_file=$output_trec_file \
       --trec_gold_qrel_file_path=$trec_gold_qrel_file_path \ % gold qrel file
       --per_gpu_train_batch_size=4 \ 
-      --test_type=convqp \ % convq for qrecc
+      --test_type=convqp \ % convqa for qrecc
       --max_query_length=32 \
-      --max_doc_length=384 \ % 256 for qrecc
+      --max_doc_length=384 \ 
       --max_response_length=64 \
-      --max_concat_length=512 \ % 256 for qrecc
+      --max_concat_length=512 \ 
       --use_PRL=False \
       --is_PRF=False \
       --is_train=False \
