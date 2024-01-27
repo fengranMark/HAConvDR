@@ -16,7 +16,7 @@ Main packages:
 
 ## 1. Download data and Preprocessing
 
-Four public datasets can be downloaded from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa), and [TREC-CAST](https://www.treccast.ai/). Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to process data for generating pseudo relevant judgment.
+Four public datasets can be downloaded from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa), and [TREC-CAST](https://www.treccast.ai/). Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to processes data for generating pseudo relevant judgment.
 
 ## 2. Generate pseudo relevant judgment
 
@@ -56,7 +56,7 @@ Finally, the produced bm25 rank-list can be used to generate bm25-hard negatives
 
 To train HAConvDR, please run the following commands. The pre-trained language model we use for dense retrieval is [ANCE](https://github.com/microsoft/ANCE).
 
-    python train_convretriever_topiocqa.py --pretrained_encoder_path="checkpoints/ad-hoc-ance-msmarco" \ 
+    python train_HAConvDR_topiocqa.py --pretrained_encoder_path="checkpoints/ad-hoc-ance-msmarco" \ 
       --train_file_path=$train_file_path \ 
       --log_dir_path=$log_dir_path \
       --model_output_path=$model_output_path \ 
@@ -77,7 +77,7 @@ To train HAConvDR, please run the following commands. The pre-trained language m
 
 Now, we can perform retrieval to evaluate the ConvHACL-trained dense retriever by running:
 
-    python test_retrieval_topiocqa.py --pretrained_encoder_path=$trained_model_path \ 
+    python test_HAConvDR_topiocqa.py --pretrained_encoder_path=$trained_model_path \ 
       --passage_embeddings_dir_path=$passage_embeddings_dir_path \ 
       --passage_offset2pid_path=$passage_offset2pid_path \
       --qrel_output_path=$qrel_output_path \ % output dir
