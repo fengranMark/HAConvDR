@@ -1,6 +1,6 @@
 # HAConvDR
 
-A temporary repository of our ARR submission - History-Aware Conversational Dense Retrieval.
+A temporary repository of History-Aware Conversational Dense Retrieval.
 
 # Environment Dependency
 
