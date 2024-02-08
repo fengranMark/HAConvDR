@@ -19,8 +19,8 @@ import re
 import gc
 import pickle
 # from transformers import DPRContextEncoderTokenizer, DPRContextEncoder
-from models import load_model
-from utils import check_dir_exist_or_build
+from src.models import load_model
+from src.utils import check_dir_exist_or_build
 from IPython import embed
 import toml
 torch.multiprocessing.set_sharing_strategy('file_system')
