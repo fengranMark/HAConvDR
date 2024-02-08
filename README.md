@@ -16,7 +16,7 @@ Main packages:
 
 ## 1. Download data and Preprocessing
 
-Four public datasets can be downloaded from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa), and [TREC-CAST](https://www.treccast.ai/). Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to processes data for generating pseudo relevant judgment.
+Four public datasets can be downloaded from [QReCC](https://github.com/apple/ml-qrecc), [TopiOCQA](https://github.com/McGill-NLP/topiocqa), and [TREC-CAST](https://www.treccast.ai/). Data preprocessing can refer to "preprocess" folder. The file with "PRJ" prefix is to processes data for generating pseudo relevant judgment, which should be run after finish the Step 2 as below.
 
 ## 2. Generate pseudo relevant judgment
 
