@@ -10,10 +10,10 @@ import argparse
 import json
 torch.multiprocessing.set_sharing_strategy('file_system')
 from multiprocessing import Process
-from models import load_model
+from src.models import load_model
 import toml
 from IPython import embed
-from utils import check_dir_exist_or_build
+from src.utils import check_dir_exist_or_build
 
 def pad_input_ids(input_ids, max_length, pad_on_left=False, pad_token=0):
     padding_length = max_length - len(input_ids)
