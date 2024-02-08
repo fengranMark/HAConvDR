@@ -14,8 +14,7 @@ def gen_topiocqa_qrel(raw_dev_file_path, output_qrel_file_path):
     
     with open(output_qrel_file_path, "w") as f:
         for line in tqdm(data):
-            #sample_id = "{}_{}_{}".format("TopiOCQA-Dev", line["conv_id"], line["turn_id"])
-            sample_id = "{}-{}".format(line["conv_id"], line["turn_id"])
+            sample_id = "{}_{}_{}".format("TopiOCQA-Dev", line["conv_id"], line["turn_id"])
             for pos in line["positive_ctxs"]:
                 #pid = int(pos["passage_id"]) - 1
                 pid = int(pos["passage_id"])
@@ -51,8 +50,7 @@ def gen_train_test_files(raw_train_file_path, raw_dev_file_path, output_train_fi
 
     with open(output_train_file_path, "w") as f:
         for line in tqdm(data):
-            # sample_id = "{}_{}_{}".format("TopiOCQA-Train", line["conv_id"], line["turn_id"])
-            sample_id = "{}-{}".format(line["conv_id"], line["turn_id"])
+            sample_id = "{}_{}_{}".format("TopiOCQA-Train", line["conv_id"], line["turn_id"])
             query = line["question"]
             answers = line["answers"]
             if len(answers) == 0:
@@ -112,8 +110,7 @@ def gen_train_test_files(raw_train_file_path, raw_dev_file_path, output_train_fi
     context_queries_and_answers = []
     with open(ouput_test_file_path, "w") as f:
         for line in tqdm(data):
-            #sample_id = "{}_{}_{}".format("TopiOCQA-Dev", line["conv_id"], line["turn_id"])
-            sample_id = "{}-{}".format(line["conv_id"], line["turn_id"])
+            sample_id = "{}_{}_{}".format("TopiOCQA-Dev", line["conv_id"], line["turn_id"])
             query = line["question"]
             answers = line["answers"]
             if len(answers) == 0:
@@ -433,8 +430,8 @@ def split_pos_passage_text(input_file, output_file):
 
 if __name__ == "__main__":
     
-    raw_train_file_path = "./gold_train.json"
-    raw_dev_file_path = "./gold_dev.json"
+    raw_train_file_path = "./gold_train.json" # data.gold_passages_info.all_history.train
+    raw_dev_file_path = "./gold_dev.json" # data.gold_passages_info.all_history.dev
     output_train_file_path = "./train.json"
     output_test_file_path = "./test.json"
     collection_file_path = "./datasets/topiocqa/full_wiki_segments.tsv"
@@ -444,8 +441,8 @@ if __name__ == "__main__":
     output_qrel_file_path = "./topiocqa_qrel.trec"
     gen_topiocqa_qrel(raw_dev_file_path, output_qrel_file_path)
 
-    train_rel_file = "../../../ConvDR-main/output/topiocqa/dense_rel/train_rel_label.json"
-    test_rel_file = "../../../ConvDR-main/output/topiocqa/dense_rel/dev_rel_label.json"
+    train_rel_file = "./output/topiocqa/dense_rel/train_rel_label.json"
+    test_rel_file = "./output/topiocqa/dense_rel/dev_rel_label.json"
     train_new_file = "./train_with_gold_rel_p.json"
     test_new_file = "./test_with_gold_rel_p.json"
     merge_rel_label_info(train_rel_file, output_train_file_path, train_new_file)
