@@ -108,3 +108,29 @@ class BERT(BertForSequenceClassification):
     
     def forward(self, input_ids, attention_mask, wrap_pooler=False):
         return self.query_emb(input_ids, attention_mask)
+
+def load_model(model_type, model_path):
+    if model_type == "ANCE_Query" or model_type == "ANCE_Passage":
+        config = RobertaConfig.from_pretrained(
+            model_path,
+            finetuning_task="MSMarco",
+        )
+        tokenizer = RobertaTokenizer.from_pretrained(
+            model_path,
+            do_lower_case=True
+        )
+        model = ANCE.from_pretrained(model_path, config=config)
+    
+    elif model_type == "BERT_Query" or model_type == "BERT_Passage":
+        config = BertConfig.from_pretrained(
+            model_path,
+        )
+        tokenizer = BertTokenizer.from_pretrained(
+            model_path,
+            do_lower_case=True
+        )
+        model = BERT.from_pretrained(model_path, config=config)
+
+    else:
+        raise ValueError
+    return tokenizer, model
