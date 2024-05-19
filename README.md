@@ -1,6 +1,6 @@
 # HAConvDR
 
-A temporary repository of History-Aware Conversational Dense Retrieval.
+History-Aware Conversational Dense Retrieval. A codebase for ACL 2024 Findings accepted paper.
 
 # Environment Dependency
 
