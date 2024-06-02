@@ -439,10 +439,10 @@ if __name__ == "__main__":
     test_new_file = "./test_with_gold_rel.json"
     merge_rel_label_info(test_rel_file, orig_file, test_new_file)
 
-    bm25_file = "../../../ConvDR-main/output/qrecc/bm25/bm25_gold_oracle_train_res.trec"
+    bm25_file = "output/qrecc/bm25/bm25_gold_oracle_train_res.trec"
     orig_file = "train_with_gold_rel.json"
     new_file = "train_with_gold_rel_neg.json"
-    qrecc_collection_path = "../../../ConvDR-main/datasets/qrecc/qrecc_collection.tsv"
+    qrecc_collection_path = "datasets/qrecc/qrecc_collection.tsv"
     merge_bm25_neg_info(bm25_file, orig_file, new_file)
     extract_doc_content_of_bm25_hard_negs_for_train_file(qrecc_collection_path, new_file, new_file)
 
