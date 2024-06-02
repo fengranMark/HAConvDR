@@ -421,11 +421,6 @@ def merge_pseudo_relevant_feedback(query_file, ance_trec_file, bm25_trec_file, c
             record["selected_PRF_neg_docs"], record["selected_PRF_neg_docs_pids"] = selected_PRF_neg_docs, selected_PRF_neg_docs_pids
             g.write(json.dumps(record) + '\n')
             
-def split_pos_passage_text(input_file, output_file):
-    with open(input_file, 'r') as f:
-        data = f.readlines()
-
-    pass
 
 
 if __name__ == "__main__":
